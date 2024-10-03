@@ -47,11 +47,11 @@ fn check_and_kill_wallpaperengine(){
   // Run a windows command to kill "wallpaper32.exe" (wallpaper engines backend)
   // Run it like 5 times cause it likes to open multiple processes
 
-  for i in 0..5{
-    dbg!(i);
+  for _ in 0..5{
     Command::new("powershell")
       .args([ "TASKKILL", "/IM wallpaper32.exe" ])
       .stdout(Stdio::null())
+      .stderr(Stdio::null())
       .spawn().unwrap();
   }
 }
@@ -81,5 +81,6 @@ fn goose_invasion( temp_dir: PathBuf ){
   Command::new(temp_dir.join("./goose/DesktopGoose v0.31/GooseDesktop.exe"))
     .current_dir(temp_dir.join("./goose/DesktopGoose v0.31"))
     .stdout(Stdio::null())
+    .stderr(Stdio::null())
     .spawn().unwrap();
 }
